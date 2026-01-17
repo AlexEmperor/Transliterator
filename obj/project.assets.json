@@ -1,0 +1,160 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0-windows7.0": {
+      "NHotkey/3.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0-windows7.0/NHotkey.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/NHotkey.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
+      "NHotkey.WindowsForms/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "NHotkey": "3.0.0"
+        },
+        "compile": {
+          "lib/net6.0-windows7.0/NHotkey.WindowsForms.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/NHotkey.WindowsForms.dll": {
+            "related": ".pdb"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    }
+  },
+  "libraries": {
+    "NHotkey/3.0.0": {
+      "sha512": "IEghs0QqWsQYH0uUmvIl0Ye6RaebWRh38eB6ToOkDnQucTYRGFOgtig0gSxlwCszTilYFz3n1ZuY762x+kDR3A==",
+      "type": "package",
+      "path": "nhotkey/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/NHotkey.dll",
+        "lib/net462/NHotkey.pdb",
+        "lib/net6.0-windows7.0/NHotkey.dll",
+        "lib/net6.0-windows7.0/NHotkey.pdb",
+        "nhotkey.3.0.0.nupkg.sha512",
+        "nhotkey.nuspec"
+      ]
+    },
+    "NHotkey.WindowsForms/3.0.0": {
+      "sha512": "54LTsVAqIF1FSqC9Lwr98XkvQ5GV5Y5nNR4KVbCk85hP5sTOLcsVuN/3NCYNxi7ixud6Ciek+FjFyGsFnIxQ3Q==",
+      "type": "package",
+      "path": "nhotkey.windowsforms/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/NHotkey.WindowsForms.dll",
+        "lib/net462/NHotkey.WindowsForms.pdb",
+        "lib/net6.0-windows7.0/NHotkey.WindowsForms.dll",
+        "lib/net6.0-windows7.0/NHotkey.WindowsForms.pdb",
+        "nhotkey.windowsforms.3.0.0.nupkg.sha512",
+        "nhotkey.windowsforms.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0-windows7.0": [
+      "NHotkey >= 3.0.0",
+      "NHotkey.WindowsForms >= 3.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Sasha\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Git\\Transliterator\\Transliterator.csproj",
+      "projectName": "Transliterator",
+      "projectPath": "C:\\Git\\Transliterator\\Transliterator.csproj",
+      "packagesPath": "C:\\Users\\Sasha\\.nuget\\packages\\",
+      "outputPath": "C:\\Git\\Transliterator\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Sasha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net8.0-windows7.0": {
+        "targetAlias": "net8.0-windows",
+        "dependencies": {
+          "NHotkey": {
+            "target": "Package",
+            "version": "[3.0.0, )"
+          },
+          "NHotkey.WindowsForms": {
+            "target": "Package",
+            "version": "[3.0.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
