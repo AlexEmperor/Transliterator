@@ -18,3 +18,4 @@ C:\Git\Transliterator\obj\Debug\net8.0-windows\refint\Transliterator.dll
 C:\Git\Transliterator\obj\Debug\net8.0-windows\Transliterator.pdb
 C:\Git\Transliterator\obj\Debug\net8.0-windows\Transliterator.genruntimeconfig.cache
 C:\Git\Transliterator\obj\Debug\net8.0-windows\ref\Transliterator.dll
+C:\Git\Transliterator\obj\Debug\net8.0-windows\Transliterator.sourcelink.json

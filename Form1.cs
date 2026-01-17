@@ -7,6 +7,22 @@ namespace Transliterator
     public partial class Form1 : Form
     {
         private NotifyIcon trayIcon;
+        private LayoutMode _currentMode = LayoutMode.EngToRus;
+        private static readonly string Eng =
+    "qwertyuiop[]asdfghjkl;'zxcvbnm,./`QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?";
+
+        private static readonly string Rus =
+            "йцукенгшщзхъфывапролджэячсмитьбю.ёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,";
+
+        private static readonly HashSet<string> ExcludedWords =
+        [
+            "Excel",
+            "Word",
+            "PowerPoint",
+            "Windows",
+            "GitHub",
+            "VisualStudio"
+        ];
 
         public Form1()
         {
@@ -29,16 +45,47 @@ namespace Transliterator
             };
 
             var contextMenu = new ContextMenuStrip();
-            contextMenu.Items.Add("Выход", null, (s, e) => Application.Exit());
+
+            var engRusItem = new ToolStripMenuItem("Английский → Русский")
+            {
+                Checked = true
+            };
+
+            var rusEngItem = new ToolStripMenuItem("Русский → Английский");
+
+            engRusItem.Click += (_, _) =>
+            {
+                _currentMode = LayoutMode.EngToRus;
+                engRusItem.Checked = true;
+                rusEngItem.Checked = false;
+            };
+
+            rusEngItem.Click += (_, _) =>
+            {
+                _currentMode = LayoutMode.RusToEng;
+                engRusItem.Checked = false;
+                rusEngItem.Checked = true;
+            };
+
+            contextMenu.Items.Add(engRusItem);
+            contextMenu.Items.Add(rusEngItem);
+            contextMenu.Items.Add(new ToolStripSeparator());
+            contextMenu.Items.Add("Выход", null, (_, _) => Application.Exit());
+
             trayIcon.ContextMenuStrip = contextMenu;
         }
+
 
         private void SetupHotkey()
         {
             try
             {
                 // Горячая клавиша Ctrl + Shift + R
-                HotkeyManager.Current.AddOrReplace("ConvertHotkey", Keys.R | Keys.Control | Keys.Shift, OnHotkeyPressed);
+                HotkeyManager.Current.AddOrReplace(
+                    "ConvertHotkey",
+                    Keys.R | Keys.Alt,
+                    OnHotkeyPressed
+                );
             }
             catch (Exception ex)
             {
@@ -50,51 +97,161 @@ namespace Transliterator
         {
             try
             {
-                // 1. Скопировать выделенный текст
-                SendKeys.SendWait("^c");
-                Thread.Sleep(50); // пауза, чтобы текст успел попасть в буфер
-
-                if (Clipboard.ContainsText())
+                if (!Clipboard.ContainsText())
                 {
-                    string original = Clipboard.GetText();
-                    string converted = ConvertEngToRus(original);
-
-                    // 2. Заменяем выделение на новый текст
-                    Clipboard.SetText(converted);
-
-                    // 3. Вставляем сконвертированный текст
-                    SendKeys.SendWait("^v");
-
-                    trayIcon.ShowBalloonTip(1000, "Eng→Rus Converter", "Текст заменён!", ToolTipIcon.Info);
+                    trayIcon.ShowBalloonTip(
+                        800,
+                        "Transliterator",
+                        "Буфер пуст. Скопируйте текст (Ctrl+C)",
+                        ToolTipIcon.Warning
+                    );
+                    return;
                 }
+
+                string original = Clipboard.GetText();
+                if (string.IsNullOrWhiteSpace(original))
+                {
+                    return;
+                }
+
+                string converted = Convert(original);
+
+                Clipboard.SetText(converted);
+
+                trayIcon.ShowBalloonTip(
+                    1000,
+                    "Transliterator",
+                    "Текст сконвертирован. Вставьте Ctrl+V",
+                    ToolTipIcon.Info
+                );
             }
             catch
             {
-                trayIcon.ShowBalloonTip(1000, "Eng→Rus Converter", "Ошибка при конвертации текста", ToolTipIcon.Error);
+                trayIcon.ShowBalloonTip(
+                    800,
+                    "Transliterator",
+                    "Ошибка конвертации",
+                    ToolTipIcon.Error
+                );
             }
 
             e.Handled = true;
         }
 
-        private string ConvertEngToRus(string text)
+        private string WaitClipboardText(int timeoutMs)
         {
-            var eng = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?";
-            var rus = "йцукенгшщзхъфывапролджэячсмитьбю.ёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,";
+            int elapsed = 0;
 
-            var translit = new Dictionary<char, char>();
-            for (int i = 0; i < eng.Length; i++)
+            while (elapsed < timeoutMs)
             {
-                translit[eng[i]] = rus[i];
+                if (Clipboard.ContainsText())
+                {
+                    return Clipboard.GetText();
+                }
+
+                Thread.Sleep(20);
+                elapsed += 20;
+            }
+
+            return string.Empty;
+        }
+
+
+        private string Convert(string text)
+        {
+            string from = _currentMode == LayoutMode.EngToRus ? Eng : Rus;
+            string to = _currentMode == LayoutMode.EngToRus ? Rus : Eng;
+
+            var map = new Dictionary<char, char>();
+            for (int i = 0; i < from.Length; i++)
+            {
+                map[from[i]] = to[i];
             }
 
             var result = new StringBuilder(text.Length);
+            var wordBuffer = new StringBuilder();
+
             foreach (char c in text)
             {
-                result.Append(translit.ContainsKey(c) ? translit[c] : c);
+                if (IsConvertibleChar(c))
+                {
+                    wordBuffer.Append(c);
+                }
+                else
+                {
+                    FlushWord(result, wordBuffer, map);
+                    result.Append(c);
+                }
             }
 
+            FlushWord(result, wordBuffer, map);
             return result.ToString();
         }
+
+        private void FlushWord(StringBuilder result, StringBuilder wordBuffer, Dictionary<char, char> translit)
+        {
+            if (wordBuffer.Length == 0)
+            {
+                return;
+            }
+
+            string word = wordBuffer.ToString();
+
+            if (ShouldConvertWord(word))
+            {
+                foreach (char c in word)
+                {
+                    result.Append(translit.TryGetValue(c, out var r) ? r : c);
+                }
+            }
+            else
+            {
+                result.Append(word);
+            }
+
+            wordBuffer.Clear();
+        }
+
+        private bool IsConvertibleChar(char c)
+        {
+            return Eng.Contains(c) || Rus.Contains(c) || char.IsDigit(c);
+        }
+
+        private bool ShouldConvertWord(string word)
+        {
+            // Явные исключения
+            if (ExcludedWords.Contains(word))
+            {
+                return false;
+            }
+
+            // Excel, Word, GitHub
+            return !IsLatinWord(word) || !StartsWithUpperLatin(word);
+        }
+
+        private bool IsLatinWord(string word)
+        {
+            foreach (char c in word)
+            {
+                if (!IsConvertibleChar(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool StartsWithUpperLatin(string word)
+        {
+            if (word.Length == 0)
+            {
+                return false;
+            }
+
+            char first = word[0];
+            return first >= 'A' && first <= 'Z';
+        }
+
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -103,4 +260,10 @@ namespace Transliterator
             base.OnFormClosing(e);
         }
     }
+}
+
+public enum LayoutMode
+{
+    EngToRus,
+    RusToEng
 }
