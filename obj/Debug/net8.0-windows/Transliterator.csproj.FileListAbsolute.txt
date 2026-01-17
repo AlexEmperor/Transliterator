@@ -19,3 +19,4 @@ C:\Git\Transliterator\obj\Debug\net8.0-windows\Transliterator.pdb
 C:\Git\Transliterator\obj\Debug\net8.0-windows\Transliterator.genruntimeconfig.cache
 C:\Git\Transliterator\obj\Debug\net8.0-windows\ref\Transliterator.dll
 C:\Git\Transliterator\obj\Debug\net8.0-windows\Transliterator.sourcelink.json
+C:\Git\Transliterator\bin\Debug\net8.0-windows\RU_EN_icon.ico
