@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Transliterator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9cced28d4e06adcc09635d426138ba05a29a02cb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f85da1c86a01efbafd72a511b276cb6a1d46283d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Transliterator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Transliterator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

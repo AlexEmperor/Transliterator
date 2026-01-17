@@ -3,14 +3,6 @@
   "WorkspaceRootPath": "C:\\Git\\Transliterator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{225D40C4-D942-4E24-A4DA-6E164DEBDB99}|Transliterator.csproj|c:\\git\\transliterator\\buttonssetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{225D40C4-D942-4E24-A4DA-6E164DEBDB99}|Transliterator.csproj|solutionrelative:buttonssetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{225D40C4-D942-4E24-A4DA-6E164DEBDB99}|Transliterator.csproj|c:\\git\\transliterator\\transliterator.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{225D40C4-D942-4E24-A4DA-6E164DEBDB99}|Transliterator.csproj|solutionrelative:transliterator.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{225D40C4-D942-4E24-A4DA-6E164DEBDB99}|Transliterator.csproj|c:\\git\\transliterator\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{225D40C4-D942-4E24-A4DA-6E164DEBDB99}|Transliterator.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -22,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,39 +50,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Transliterator",
-              "DocumentMoniker": "C:\\Git\\Transliterator\\Transliterator.csproj",
-              "RelativeDocumentMoniker": "Transliterator.csproj",
-              "ToolTip": "C:\\Git\\Transliterator\\Transliterator.csproj",
-              "RelativeToolTip": "Transliterator.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-17T20:27:21.293Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ButtonsSetup.cs",
-              "DocumentMoniker": "C:\\Git\\Transliterator\\ButtonsSetup.cs",
-              "RelativeDocumentMoniker": "ButtonsSetup.cs",
-              "ToolTip": "C:\\Git\\Transliterator\\ButtonsSetup.cs",
-              "RelativeToolTip": "ButtonsSetup.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T20:22:21.324Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Git\\Transliterator\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Git\\Transliterator\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T19:21:21.139Z"
+              "WhenOpened": "2026-01-17T19:21:21.139Z",
+              "EditorCaption": ""
             }
           ]
         }

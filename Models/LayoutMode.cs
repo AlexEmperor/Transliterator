@@ -1,4 +1,4 @@
-﻿namespace Transliterator
+﻿namespace Transliterator.Models
 {
     public enum LayoutMode
     {

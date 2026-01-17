@@ -1,17 +1,19 @@
-﻿namespace Transliterator
-{
-    public class Click
-    {
-        private ButtonsSetup _setup; // ссылка на объект
+﻿using Transliterator.Models;
 
-        private ToolStripMenuItem engRusItem = new("Английский → Русский")
+namespace Transliterator.Services.Buttons
+{
+    public class ClickService
+    {
+        private readonly ButtonsSetupService _setup; // ссылка на объект
+
+        private readonly ToolStripMenuItem engRusItem = new("Английский → Русский")
         {
             Checked = true
         };
 
-        private ToolStripMenuItem rusEngItem = new("Русский → Английский");
+        private readonly ToolStripMenuItem rusEngItem = new("Русский → Английский");
 
-        public Click(ButtonsSetup setup)
+        public ClickService(ButtonsSetupService setup)
         {
             _setup = setup;
         }

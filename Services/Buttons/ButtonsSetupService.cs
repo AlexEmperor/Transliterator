@@ -1,26 +1,27 @@
 ﻿using NHotkey.WindowsForms;
+using Transliterator.Models;
 
-namespace Transliterator
+namespace Transliterator.Services.Buttons
 {
-    public class ButtonsSetup
+    public class ButtonsSetupService
     {
-        private Click click;
-        private HotKeysPress hotKeysPress;
+        private readonly ClickService click;
+        private readonly HotKeyPressService hotKeysPress;
         private NotifyIcon? trayIcon;
 
         public LayoutMode CurrentMode { get; set; } = LayoutMode.EngToRus;
 
-        public ButtonsSetup()
+        public ButtonsSetupService()
         {
-            click = new Click(this); // передаём сам объект
-            hotKeysPress = new HotKeysPress(this);
+            click = new ClickService(this);
+            hotKeysPress = new HotKeyPressService(this);
         }
 
         public NotifyIcon SetupTray()
         {
             trayIcon = new NotifyIcon
             {
-                Icon = new Icon("RU_EN_icon.ico"),
+                Icon = new Icon("Resources/RU_EN_icon.ico"),
                 Visible = true,
                 Text = "EngRus Converter"
             };

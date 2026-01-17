@@ -1,17 +1,18 @@
 ﻿using NHotkey.WindowsForms;
+using Transliterator.Services.Buttons;
 
 namespace Transliterator
 {
     public partial class Form1 : Form
     {
-        private ButtonsSetup setup = new();
+        private ButtonsSetupService _setup = new();
 
         public Form1()
         {
             InitializeComponent();
 
-            NotifyIcon trayIcon = setup.SetupTray();
-            setup.SetupHotkey();
+            NotifyIcon trayIcon = _setup.SetupTray();
+            _setup.SetupHotkey();
 
             WindowState = FormWindowState.Minimized;
             ShowInTaskbar = false;
